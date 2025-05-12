@@ -1,0 +1,44 @@
+<div class="app-container">
+    <header>
+      <div class="logo-title">
+        <h1>📊 Job Market Analyzer</h1>
+      </div>
+      <nav>
+        <button class="nav-btn" (click)="navigateToDashboard()">
+          📈 Dashboard
+        </button>
+        <button class="nav-btn" (click)="navigateToHistory()">
+          📜 History
+        </button>
+        <button class="nav-btn" *ngIf="!isLoggedIn" (click)="navigateToLogin()">
+          Login
+        </button>
+        <button class="nav-btn" *ngIf="!isLoggedIn" (click)="navigateToSignup()">
+          Sign Up
+        </button>
+        <button class="nav-btn" *ngIf="isLoggedIn" (click)="logout()">
+          Logout
+        </button>
+      </nav>
+    </header>
+
+    <main class="centered-content">
+      <div class="dashboard-preview">
+        <h2>Job Market Analysis Dashboard</h2>
+        <p>Upload your job market data to get your job market analysis</p>
+        <div class="button-container">
+          <button class="primary-btn" (click)="navigateToUpload()">Start Analysis</button>
+        </div>
+      </div>
+  
+      <div class="result-container" *ngIf="extractedVisible && lastExtractedData">
+        <h2>Job Market Analysis</h2>
+        <div class="json-display">
+          <pre>{{ lastExtractedData?.content | json }}</pre>
+        </div>
+        <button class="download-btn" (click)="handleDownloadRequest()">
+          Download Analysis
+        </button>
+      </div>
+    </main>
+</div>
