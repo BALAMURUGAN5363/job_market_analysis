@@ -1,0 +1,26 @@
+<div class="upload-container">
+  <h2>Upload Job Market Data</h2>
+  <div class="upload-box">
+    <input 
+      type="file" 
+      accept=".csv"
+      (change)="onFileSelected($event)"
+      class="file-input"
+      id="fileInput"
+    >
+    <label for="fileInput" class="file-label">
+      <span>Choose CSV File</span>
+      <span *ngIf="selectedFile">Selected: {{selectedFile.name}}</span>
+    </label>
+    <button 
+      (click)="uploadFile()"
+      [disabled]="!selectedFile"
+      class="upload-btn"
+    >
+      Upload
+    </button>
+  </div>
+  <div class="status-message" *ngIf="uploadStatus">
+    {{uploadStatus}}
+  </div>
+</div>
