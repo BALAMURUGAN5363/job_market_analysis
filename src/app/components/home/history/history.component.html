@@ -1,0 +1,39 @@
+<div class="history-container">
+  <header class="history-header">
+    <h1>Analysis History</h1>
+    <button class="back-btn" (click)="goBack()">Back to Home</button>
+  </header>
+
+  <div class="history-content">
+    <div class="history-list" *ngIf="historyData.length > 0">
+      <div class="history-item" *ngFor="let item of historyData; let i = index">
+        <div class="item-header">
+          <h3>Job Market Analysis</h3>
+          <span class="timestamp">{{ item.timestamp | date:'medium' }}</span>
+        </div>
+        <div class="item-content">
+          <div class="analysis-summary">
+            <div class="summary-item">
+              <span class="label">Total Jobs:</span>
+              <span class="value">{{ item.analysisData.totalJobs }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Average Salary:</span>
+              <span class="value">${{ item.analysisData.averageSalary }}</span>
+            </div>
+          </div>
+          <button class="download-btn" (click)="handleDownload(i)">
+            Download Analysis
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="historyData.length === 0">
+      <div class="empty-icon">📊</div>
+      <h2>No Analysis History</h2>
+      <p>Your job market analysis results will appear here</p>
+      <button class="primary-btn" (click)="goBack()">Start New Analysis</button>
+    </div>
+  </div>
+</div>
